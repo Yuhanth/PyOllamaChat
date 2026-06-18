@@ -32,7 +32,7 @@ pip install -r requirements.txt
 Start the application:
 
 ```bash
-python main.py
+python PyOllamaChat.py
 ```
 
 Enter the name of an installed Ollama model:
