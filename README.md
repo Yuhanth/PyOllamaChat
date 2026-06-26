@@ -27,12 +27,7 @@ Instead of using the Ollama Python package, this project communicates directly w
 
 ## Installation
 
-1. Clone the repository:
-
-```bash
-git clone https://github.com/<your-username>/PyOllamaChat.git
-cd PyOllamaChat
-```
+1. Clone the repository
 
 2. Install dependencies:
 
