@@ -1,4 +1,4 @@
-from ollama import chat
+import requests
 
 model = input("Enter model: ")
 
@@ -15,12 +15,20 @@ while True:
         "content": user_input
     })
 
-    response = chat(
-        model=model,
-        messages=messages
+    response = requests.post(
+        "http://localhost:11434/api/chat",
+        json={
+            "model": model,
+            "messages": messages,
+            "stream": False
+        }
     )
 
-    assistant_reply = response["message"]["content"]
+    response.raise_for_status()  # Raises an exception for HTTP 4xx/5xx errors
+
+    data = response.json()
+
+    assistant_reply = data["message"]["content"]
 
     print("\nAI:", assistant_reply)
 
