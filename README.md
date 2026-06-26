@@ -1,15 +1,21 @@
 # PyOllamaChat
-Simple CLI chatbot in Python powered by locally hosted Ollama models.
 
-This project allows users to interact with locally hosted Large Language Models (LLMs) such as Qwen, Llama, Gemma, and DeepSeek through a conversational terminal interface while maintaining chat history throughout the session.
+A simple command-line chatbot built in Python that interacts with locally hosted Large Language Models (LLMs) through Ollama's REST API.
+
+Instead of using the Ollama Python package, this project communicates directly with the local Ollama server using the `requests` library, providing a hands-on example of REST API integration in Python.
+
+---
 
 ## Features
 
 * Interactive command-line chat interface
 * Support for any Ollama model installed on the system
-* Conversation memory within a session
+* Session-based conversation memory
+* Direct communication with Ollama via its REST API
 * Lightweight and beginner-friendly implementation
-* Runs completely locally using Ollama
+* Runs completely locally without external APIs
+
+---
 
 ## Requirements
 
@@ -17,9 +23,16 @@ This project allows users to interact with locally hosted Large Language Models 
 * Ollama installed and running
 * At least one downloaded Ollama model
 
+---
+
 ## Installation
 
-1. Clone the repository
+1. Clone the repository:
+
+```bash
+git clone https://github.com/<your-username>/PyOllamaChat.git
+cd PyOllamaChat
+```
 
 2. Install dependencies:
 
@@ -27,21 +40,41 @@ This project allows users to interact with locally hosted Large Language Models 
 pip install -r requirements.txt
 ```
 
+---
+
+## Running Ollama
+
+Before starting the chatbot, ensure that the Ollama server is running and that you have downloaded at least one model.
+
+For example:
+
+```bash
+ollama run qwen3:8b
+```
+
+You can view installed models with:
+
+```bash
+ollama list
+```
+
+---
+
 ## Usage
 
-Start the application:
+Run the chatbot:
 
 ```bash
 python PyOllamaChat.py
 ```
 
-Enter the name of an installed Ollama model:
+Enter the name of an installed model:
 
 ```text
 Enter model: qwen3:8b
 ```
 
-Begin chatting:
+Example conversation:
 
 ```text
 You: Explain linked lists
@@ -55,7 +88,11 @@ Exit the application at any time:
 You: exit
 ```
 
-## Example Models
+---
+
+## Supported Models
+
+Any model installed through Ollama can be used, including:
 
 * qwen3:8b
 * qwen3-coder
@@ -63,31 +100,48 @@ You: exit
 * gemma3
 * deepseek-r1
 
-List installed models:
-
-```bash
-ollama list
-```
+---
 
 ## How It Works
 
 1. The user selects an installed Ollama model.
 2. Messages are stored in a conversation history list.
-3. The entire conversation history is sent to Ollama with each request.
-4. The model generates a context-aware response.
-5. The response is appended to the conversation history.
+3. The application sends a POST request to Ollama's local REST API (`http://localhost:11434/api/chat`).
+4. Ollama generates a context-aware response using the selected model.
+5. The assistant's reply is displayed and added to the conversation history.
+
+---
 
 ## Technologies Used
 
 * Python
-* Ollama Python Library
+* Requests
+* REST APIs
+* Ollama
 * Local Large Language Models (LLMs)
+
+---
+
+## Learning Outcomes
+
+This project demonstrates:
+
+* Consuming REST APIs using Python
+* Sending HTTP POST requests with JSON payloads
+* Parsing JSON responses
+* Managing conversation history for LLM interactions
+* Building a simple command-line chatbot
+* Working with locally hosted AI models
+
+---
 
 ## Future Improvements
 
+* Streaming responses as they are generated
 * Save chat history to files
-* Web interface using
+
+---
 
 ## License
 
-MIT License
+This project is licensed under the MIT License.
